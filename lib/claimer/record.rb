@@ -1,14 +1,16 @@
 module Claimer
   class Record
 
-    attr_accessor :doctor_number, :referring_doctor_number, :clinic_number,
+    attr_accessor :doctor_number, :referring_doctor_number, :doctor_name, :clinic_number,
       :clinic_address, :clinic_city_and_prov, :clinic_postal_code, :hsn, :dob,
       :sex, :first_name, :last_name, :icd9, :date_of_service, :end_date_of_service,
-      :number_of_units, :fee, :fee_code, :claim_number, :claim_sequence_number, :in_hospital
+      :number_of_units, :fee, :fee_code, :comments, :claim_number,
+      :claim_sequence_number, :in_hospital
 
     def initialize(values = {})
       self.doctor_number           = values[:doctor_number]
       self.referring_doctor_number = values[:referring_doctor_number] || ''
+      self.doctor_name             = values[:doctor_name]
       self.clinic_number           = values[:clinic_number]
       self.clinic_address          = values[:clinic_address]
       self.clinic_city_and_prov    = values[:clinic_city_and_prov]

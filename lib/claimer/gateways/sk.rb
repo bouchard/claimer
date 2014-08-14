@@ -8,7 +8,16 @@ module Claimer
       self.first_claim_number = 10000
     end
 
-    def add_record
+    def add_record(*args)
+      self.records << Claimer::Record.new(*args)
+    end
+
+    def finalize!
+      collate_records
+    end
+
+    def push!
+      finalize!
     end
 
     private
@@ -19,10 +28,10 @@ module Claimer
         selected_records.first.doctor_number.to_s.rjust(4, '0'),
         '000000', # Filler
         selected_records.first.clinic_number.to_s.rjust(3, '0'),
-        selected_records.first.clinic_name.to_s[0..24].rjust(25, '0'),
-        selected_records.first.clinic_address.to_s[0..24].rjust(25, '0'),
-        selected_records.first.clinic_city_and_prov.to_s[0..24].rjust(25, '0'),
-        selected_records.first.clinic_postal_code.to_s[0..24].rjust(25, '0'),
+        selected_records.first.doctor_name.to_s[0..24].rjust(25, '0').upcase,
+        selected_records.first.clinic_address.to_s[0..24].rjust(25, '0').upcase,
+        selected_records.first.clinic_city_and_prov.to_s[0..24].rjust(25, '0').upcase,
+        selected_records.first.clinic_postal_code.to_s[0..24].rjust(25, '0').upcase,
         '8', # Submission type: By Internet.
         '' # Practitioner billing.
       ].join('')
@@ -58,7 +67,7 @@ module Claimer
         record.dob.strftime('%m%y'),
         record.sex.to_s.upcase,
         "#{record.last_name} #{record.first_name}"[0..24].ljust(25),
-        record.icd9[0..2],
+        record.icd9.to_s[0..2].rjust(3, '0'),
         record.referring_doctor_number.rjust(4),
         record.date_of_service.strftime('%d%m%y'),
         record.number_of_units.to_s.rjust(2, '0'),
@@ -81,7 +90,7 @@ module Claimer
         record.dob.strftime('%m%y'),
         record.sex.to_s.upcase,
         "#{record.last_name} #{record.first_name}"[0..24].ljust(25),
-        record.icd9[0..2],
+        record.icd9.to_s[0..2].rjust(3, '0'),
         record.referring_doctor_number.rjust(4),
         record.date_of_service.strftime('%d%m%y'),
         record.number_of_units.to_s.rjust(2, '0'),
@@ -102,7 +111,7 @@ module Claimer
         record.claim_number.to_s[0..4],
         '0', # Placeholder for claim sequence number.
         record.hsn.to_s[0..8],
-        record.comments.to_s[0..76] # Comments.
+        record.comments.to_s[0..76].upcase # Comments.
       ].join('')
     end
 
@@ -139,10 +148,6 @@ module Claimer
           ].join("\n")
         end
       end
-    end
-
-    def finalize_records!
-
     end
 
   end
