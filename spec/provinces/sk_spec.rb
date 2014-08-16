@@ -1,10 +1,10 @@
 require 'spec_helper'
 require_relative 'test_submission'
 
-describe Claimer::SK do
+describe Claimer::SKGateway do
   before(:all) do
     require 'csv'
-    @gateway = Claimer::SK.new
+    @gateway = Claimer::SKGateway.new
     CSV.foreach(File.expand_path('./sk_test.csv', File.dirname(__FILE__)), :headers => true) do |csv|
       @gateway.add_record(
         :hsn                     => csv['hsn'],
@@ -45,4 +45,16 @@ describe Claimer::SK do
     return nil if d.nil?
     Date.strptime(d.rjust(4, '0'), '%m%y')
   end
+end
+
+describe Claimer::SKRecord do
+
+  it 'validates good HSN using modulo 11 check' do
+    expect { Claimer::SKRecord.new(:hsn => 508173299) }.not_to raise_error
+  end
+
+  it 'rejects bad HSN using modulo 11 check' do
+    expect { Claimer::SKRecord.new(:hsn => 508173298) }.to raise_error("HSN is invalid (fails modulo 11 check).")
+  end
+
 end

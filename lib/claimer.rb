@@ -1,6 +1,7 @@
 module Claimer
 
-  autoload :SK, 'claimer/gateways/sk'
+  autoload :SKGateway, 'claimer/gateways/sk'
+  autoload :SKRecord, 'claimer/records/sk'
 
 end
 

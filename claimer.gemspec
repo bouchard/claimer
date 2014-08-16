@@ -9,6 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Brady Bouchard"]
   spec.email         = ["brady@thewellinspired.com"]
   spec.summary       = %q{Ruby library for automated claim submissions to Canadian Provincial Medical Service Branches.}
+  spec.description   = %q{A Ruby library for preparing, formatting and submitting claim submissions for Medicare services provided by physicians, segmented by province in Canada.}
   spec.homepage      = "https://github.com/bouchard/claimer"
   spec.license       = "MIT"
   spec.date          = Date.today.to_s
@@ -20,5 +21,5 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.6"
   spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "rspec"
+  spec.add_development_dependency "rspec", "~> 3.0"
 end

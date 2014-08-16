@@ -1,5 +1,5 @@
 module Claimer
-  class SK < Gateway
+  class SKGateway < Gateway
 
     attr_accessor :records, :first_claim_number
 
