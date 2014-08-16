@@ -147,7 +147,7 @@ module Claimer
             trailer_record(selected_records)
           ].join("\n")
         end
-      end
+      end.flatten.join("\n")
     end
 
   end
