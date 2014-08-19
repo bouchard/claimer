@@ -20,7 +20,32 @@ module Claimer
       finalize!
     end
 
+    def process_paylist!(f)
+      f.split("\n").each do |l|
+        case l[14]
+        when 'P'
+          process_paid_line(l)
+        when 'T'
+          process_total_line(l)
+        when 'M'
+          process_message_line(l)
+        end
+      end
+    end
+
     private
+
+    def process_paid_line(l)
+      # TODO.
+    end
+
+    def process_total_line(l)
+      # TODO.
+    end
+
+    def process_message_line(l)
+      # TODO.
+    end
 
     def header_record(selected_records)
       [

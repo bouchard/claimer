@@ -10,6 +10,7 @@ Claimer is a Ruby library for preparing, formatting and submitting claim submiss
 
 * Every other province.
 * Support for out-of-province billing.
+* Support for return record / paylist parsing into an intelligible format.
 
 ## HOWTO
 
