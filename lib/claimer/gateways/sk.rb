@@ -9,7 +9,7 @@ module Claimer
     end
 
     def add_record(*args)
-      self.records << Claimer::Record.new(*args)
+      self.records << Claimer::SKRecord.new(*args)
     end
 
     def finalize!

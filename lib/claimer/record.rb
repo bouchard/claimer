@@ -8,6 +8,7 @@ module Claimer
       :claim_sequence_number, :in_hospital
 
     def initialize(values = {})
+      raise "You need to instantiate province-specific records." if self.class == Record
       self.doctor_number           = values[:doctor_number]
       self.referring_doctor_number = values[:referring_doctor_number] || ''
       self.doctor_name             = values[:doctor_name]

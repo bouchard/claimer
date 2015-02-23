@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Claimer::VERSION
   spec.authors       = ["Brady Bouchard"]
   spec.email         = ["brady@thewellinspired.com"]
-  spec.summary       = %q{Ruby library for automated claim submissions to Canadian Provincial Medical Service Branches.}
-  spec.description   = %q{A Ruby library for preparing, formatting and submitting claim submissions for Medicare services provided by physicians, segmented by province in Canada.}
+  spec.summary       = %q{Ruby library for Internet Claim Submission (ICS) to Canadian Provincial Medical Service Branches.}
+  spec.description   = %q{A Ruby library for preparing, formatting and submitting claim submissions (ICS) for Medicare services provided by physicians, segmented by province in Canada.}
   spec.homepage      = "https://github.com/bouchard/claimer"
   spec.license       = "MIT"
   spec.date          = Date.today.to_s

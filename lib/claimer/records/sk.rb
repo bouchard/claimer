@@ -13,8 +13,8 @@ module Claimer
     private
 
     def modulo11_check(n)
-      raise "HSN must be an integer to do the modulo 11 check." unless n.is_a?(Integer)
-      11 - 1.upto(8).map{ |d| (n.div(10 ** d) % 10) * (d + 1) }.inject(0, &:+) % 11 == n % 10
+      n = n.to_s.gsub(/[^\d]/,'').rjust(9, '0')
+      11 - 1.upto(8).map{ |d| n[d].to_i * (d + 1) }.inject(0, &:+) % 11 == n[0].to_i
     end
 
   end
